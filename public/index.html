@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     <title><%= DATA.name %></title>
     <meta charset="utf-8" />
-    <meta name="author" content="Huangxin, LF112" />
+    <meta name="author" content="<%= DATA.author || DATA.name %>" />
     <meta
       name="viewport"
       content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta name="description" content="<%= DATA.description %>" />
-    <link rel="shortcut icon" type="image/x-icon" id="favicon" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/spectre.css@0.5.9/dist/spectre.min.css"
-    /> -->
-    <link
-      crossorigin="anonymous"
-      integrity="sha384-0pZXcd7Aq/G9HTCOUwvvpy9s5QCu8jkdmAcsCLFchXEH95ixikypH8uUia/pJw/h"
-      href="https://lib.baomitu.com/spectre.css/0.5.9/spectre.min.css"
-      rel="stylesheet"
-    />
+    <meta property="og:title" content="<%= DATA.name %>" />
+    <meta property="og:description" content="<%= DATA.description %>" />
+    <% if (DATA.profile && DATA.profile.indexOf("http") === 0) { %>
+    <meta property="og:image" content="<%= DATA.profile %>" />
+    <% } %>
+    <link rel="shortcut icon" type="image/x-icon" id="favicon" href="favicon.ico" />
+    <!-- spectre.css 已本地化，避免依赖第三方 CDN（原来的 lib.baomitu.com 在境外访问很慢） -->
+    <link rel="stylesheet" href="statics/spectre.min.css" />
     <link rel="stylesheet" href="statics/style.css" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <% if (DATA.analytics) { %>
+    <!-- Global site tag (gtag.js) - Google Analytics：在 config.json 的 analytics 填自己的 GA4 ID，留空则不加载 -->
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=G-NRE7XSR7BF"
+      src="https://www.googletagmanager.com/gtag/js?id=<%= DATA.analytics %>"
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -32,9 +30,9 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      gtag("config", "G-NRE7XSR7BF");
+      gtag("config", "<%= DATA.analytics %>");
     </script>
+    <% } %>
   </head>
 
   <body>
@@ -130,13 +128,17 @@
         </div>
       </div>
     </div>
-    <div id="footer" styld="z-index: 10;">
-      ©2021 made with ❤️ by
-      <a href="https://idealclover.top" target="_blank"> idealclover</a>
+    <div id="footer" style="z-index: 10;">
+      ©<%= new Date().getFullYear() %> made with ❤️ by
+      <a href="<%= DATA.homepage || "#" %>" target="_blank" rel="noopener">
+        <%= DATA.author || DATA.name %></a
+      >
     </div>
+    <% if (DATA.repo) { %>
     <a
-      href="https://github.com/idealclover/Click-to-Donate"
+      href="<%= DATA.repo %>"
       target="_blank"
+      rel="noopener"
       class="github-corner"
       aria-label="View source on GitHub"
       ><svg
@@ -185,6 +187,7 @@
         }
       }
     </style>
+    <% } %>
     <div id="tip"><img id="tip-img" alt="浏览器打开" /></div>
     <!-- Modal Section Ends -->
     <script src="statics/fonts.js"></script>

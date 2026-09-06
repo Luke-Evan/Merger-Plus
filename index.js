@@ -1,29 +1,48 @@
 import Qrcode from "qrcode";
-const { createCanvas, loadImage } = require("canvas");
 
 var parser = require("ua-parser-js");
 const ua = parser(navigator.userAgent);
 console.log(ua);
 
+// 原项目依赖 node-canvas，但它在浏览器里实际使用的是 canvas 的 browser 垫片，
+// 等价于下面这十几行。直接内联实现即可去掉需要本地编译 Cairo/GTK 的原生依赖，
+// Windows 与 GitHub Actions 上都能正常 npm install。
+function createCanvas(width, height) {
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  return canvas;
+}
+
+function loadImage(src) {
+  return new Promise(function(resolve, reject) {
+    const image = document.createElement("img");
+    image.onload = function() {
+      resolve(image);
+    };
+    image.onerror = function() {
+      reject(new Error('Failed to load the image "' + src + '"'));
+    };
+    image.src = src;
+  });
+}
+
 async function showqrcode(url) {
   document.getElementById("showqrcode").style.display = "flex";
   const canvas = createCanvas(320, 320);
-  Qrcode.toCanvas(
-    canvas,
-    url,
-    {
-      width: 320,
-      height: 320,
-    },
-    function(error) {
-      if (error) console.error(error);
-      console.log("success!");
+  await Qrcode.toCanvas(canvas, url, { width: 320 });
+
+  // 二维码中心的 logo：加载失败（例如填了没有 CORS 的外链）时不影响二维码本身
+  if (DATA.qrlogo) {
+    try {
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = false;
+      const image = await loadImage(DATA.qrlogo);
+      ctx.drawImage(image, 138, 138, 44, 44);
+    } catch (e) {
+      console.warn("qrlogo 加载失败，跳过中心 logo：", e);
     }
-  );
-  const ctx = canvas.getContext("2d");
-  ctx.imageSmoothingEnabled = false;
-  const image = await loadImage(DATA.qrlogo);
-  ctx.drawImage(image, 138, 138, 44, 44);
+  }
   return canvas.toDataURL("image/png");
 }
 
@@ -34,6 +53,8 @@ function closeqrcode() {
 }
 
 document.getElementById("qrcodeclose").onclick = closeqrcode;
+
+const saveqrbtn = document.getElementById("saveqrbtn");
 
 async function openDialog(obj) {
   let dataURL = await showqrcode(obj.url);
@@ -65,11 +86,8 @@ async function openDialog(obj) {
   } else {
     //正常情况，出现保存图片按钮
     document.getElementById("titleinfo").innerHTML = obj.title;
-    let saveqrbtn = document.getElementById("saveqrbtn");
     saveqrbtn.style.display = "inline-block";
     saveqrbtn.innerHTML = obj.savetext;
-    // 我也不知道下面两个写法哪个对
-    // saveqrbtn.href = dataURL.replace("image/png", "image/octet-stream");
     saveqrbtn.href = dataURL;
     saveqrbtn.download = "qrcode.png";
   }
@@ -126,8 +144,7 @@ window.onload = function() {
   // 针对QQ直接出拦截
   // 反正也没人用QQ钱包，关键问题是QQ还只能长按保存，不能直接调起支付宝
   if (ua.browser.name == "QQ") {
-    document.getElementById("tip-img").src =
-      "https://i.loli.net/2019/06/25/5d11d9c19065848452.png";
+    document.getElementById("tip-img").src = "statics/qq-tip.svg";
     document.getElementById("tip").style.display = "block";
   }
 

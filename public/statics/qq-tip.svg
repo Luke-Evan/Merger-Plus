@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 420" width="750" height="420">
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#ffffff"/>
+    </marker>
+  </defs>
+  <path d="M560,300 C640,250 672,170 682,86" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" marker-end="url(#ah)"/>
+  <text x="375" y="150" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="42" fill="#ffffff">当前在 QQ 内置浏览器中打开</text>
+  <text x="375" y="225" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="36" fill="#ffffff">请点击右上角「···」</text>
+  <text x="375" y="290" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="36" fill="#ffffff">选择「在浏览器中打开」后再扫码</text>
+</svg>

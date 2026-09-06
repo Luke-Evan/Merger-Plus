@@ -1,32 +1,28 @@
 {
-  "profile": "https://image.idealclover.cn/blog/assets/icon.png",
-  "name": "idealclover",
-  "description": "来给翠翠投喂棒棒糖吧🍭",
+  "profile": "statics/icon.png",
+  "name": "Luke",
+  "description": "如果这个项目帮到了你，欢迎请我喝杯咖啡 ☕",
   "qrlogo": "statics/icon.png",
+  "author": "Luke",
+  "homepage": "https://github.com/Luke-Evan",
+  "repo": "https://github.com/Luke-Evan/Merger-Plus.git",
+  "analytics": "",
   "alipay": {
-    "title": "😘支付宝扫一扫 投喂翠翠",
-    "othertitle": "长按图片保存，在支付宝打开<br />😘感谢投喂翠翠",
-    "url": "https://qr.alipay.com/FKX00710CQCHIHK4B9CA31",
-    "open_url": "alipays://platformapi/startapp?appId=10000007&qrcode=https://qr.alipay.com/FKX00710CQCHIHK4B9CA31",
+    "title": "😘支付宝扫一扫 请我喝杯咖啡",
+    "othertitle": "长按图片保存，在支付宝打开<br />😘感谢支持",
+    "url": "https://qr.alipay.com/fkx17574t8hghzzjwdaak7d",
+    "open_url": "alipays://platformapi/startapp?appId=10000007&qrcode=https://qr.alipay.com/fkx17574t8hghzzjwdaak7d",
     "savetext": "保存二维码"
   },
   "wechatpay": {
-    "title": "😘微信扫一扫 投喂翠翠",
-    "othertitle": "长按图片保存，在微信打开<br />😘感谢投喂翠翠",
-    "url": "wxp://f2f06W7B_VcXSogUH73o9rPpeEs2jsGfVtr0",
+    "title": "😘微信扫一扫 请我喝杯咖啡",
+    "othertitle": "长按图片保存，在微信打开<br />😘感谢支持",
+    "url": "wxp://f2f0R9a-pk4alw3i447g7xZCX1aR577jj39_ykDQVrjMbAI",
     "savetext": "保存二维码",
-    "wechattitle": "😘长按图片扫一扫 投喂翠翠",
+    "wechattitle": "😘长按图片扫一扫 请我喝杯咖啡",
     "wechattext": "如使用其他方式付款，请点击右上角<br />并选择”在浏览器打开“",
     "toapptext": "保存完成，去微信扫一扫"
   },
-  "tenpay": {
-    "title": "😘手机QQ扫一扫 投喂翠翠",
-    "othertitle": "长按图片保存，在手机QQ打开<br />😘感谢投喂翠翠",
-    "url": "https://vac.qq.com/wallet/qrcode.htm?m=tenpay&a=1&u=1455169173&ac=BE7F6A40B177C4558EAF9F8049F4A5BF5596E6985312BE2A2C574D0C8B1B593E&n=504%20Gateway%20Timeout&f=wallet",
-    "savetext": "保存二维码",
-    "toapptext": "保存完成，去手机QQ扫一扫"
-  },
-  "paypal": {
-    "url": "https://www.paypal.com/paypalme/idealclover?locale.x=zh_XC"
-  }
+  "tenpay": null,
+  "paypal": null
 }
