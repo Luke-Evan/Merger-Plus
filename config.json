@@ -24,5 +24,7 @@
     "toapptext": "保存完成，去微信扫一扫"
   },
   "tenpay": null,
-  "paypal": null
+  "paypal": {
+    "url": "https://www.paypal.com/paypalme/luke3312?locale.x=zh_XC"
+  }
 }
